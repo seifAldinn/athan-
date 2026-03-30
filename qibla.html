@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Prayer - Qibla</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FDFCF8] text-[#1A1A1A] font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E5E5E5] px-6 py-4 z-50 md:top-0 md:bottom-auto md:border-t-0 md:border-b">
+        <div class="max-w-md mx-auto flex justify-between items-center md:max-w-4xl">
+            <a href="/" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Home</span>
+            </a>
+            <a href="/tasbih.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="circle-dot" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Tasbih</span>
+            </a>
+            <a href="/qibla.html" class="flex flex-col items-center gap-1 text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Qibla</span>
+            </a>
+            <a href="/duas.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Duas</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-md mx-auto px-6 pt-8 pb-24 flex flex-col items-center justify-center min-h-[80vh] md:max-w-4xl md:pt-24">
+        <header class="text-center mb-12">
+            <h1 class="font-serif text-4xl font-light italic mb-2">Qibla Finder</h1>
+            <p class="text-[#8E9299] text-xs font-bold uppercase tracking-widest">Find the direction of Kaaba</p>
+        </header>
+
+        <div class="relative w-80 h-80 flex items-center justify-center">
+            <!-- Compass Outer -->
+            <div class="absolute inset-0 border-2 border-[#E5E5E5] rounded-full"></div>
+            
+            <!-- Compass Rose -->
+            <div id="compass-rose" class="relative w-full h-full transition-transform duration-100 ease-out">
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#8E9299]">N</div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#8E9299]">S</div>
+                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-[#8E9299]">W</div>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-[#8E9299]">E</div>
+                
+                <!-- Qibla Needle -->
+                <div id="qibla-needle" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-32 bg-[#5A5A40] rounded-full origin-bottom" style="transform: translate(-50%, -100%) rotate(0deg);">
+                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#5A5A40] rotate-45"></div>
+                    <div class="absolute -top-12 left-1/2 -translate-x-1/2 text-[#5A5A40]">
+                        <i data-lucide="mosque" class="w-6 h-6"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Point -->
+            <div class="absolute w-4 h-4 bg-white border-4 border-[#5A5A40] rounded-full z-20"></div>
+        </div>
+
+        <div class="mt-16 text-center">
+            <div id="qibla-status" class="bg-[#F5F5F0] px-8 py-4 rounded-full inline-block">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8E9299] mb-1">Qibla Angle</p>
+                <p id="qibla-angle-text" class="font-serif text-2xl italic text-[#5A5A40]">Calculating...</p>
+            </div>
+            <p class="mt-6 text-xs text-[#8E9299] max-w-[200px] mx-auto leading-relaxed">
+                Please ensure your device's location and compass are enabled for accuracy.
+            </p>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+        const compassRose = document.getElementById('compass-rose');
+        const qiblaNeedle = document.getElementById('qibla-needle');
+        const qiblaAngleText = document.getElementById('qibla-angle-text');
+
+        // Kaaba Coordinates
+        const KAABA_LAT = 21.4225;
+        const KAABA_LNG = 39.8262;
+
+        function calculateQibla(lat, lng) {
+            const φ1 = lat * Math.PI / 180;
+            const λ1 = lng * Math.PI / 180;
+            const φ2 = KAABA_LAT * Math.PI / 180;
+            const λ2 = KAABA_LNG * Math.PI / 180;
+
+            const y = Math.sin(λ2 - λ1);
+            const x = Math.cos(φ1) * Math.tan(φ2) - Math.sin(φ1) * Math.cos(λ2 - λ1);
+            let qibla = Math.atan2(y, x) * 180 / Math.PI;
+            return (qibla + 360) % 360;
+        }
+
+        let qiblaAngle = 0;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                qiblaAngle = calculateQibla(latitude, longitude);
+                qiblaAngleText.textContent = `${Math.round(qiblaAngle)}°`;
+                qiblaNeedle.style.transform = `translate(-50%, -100%) rotate(${qiblaAngle}deg)`;
+            });
+        }
+
+        // Device Orientation for Compass
+        window.addEventListener('deviceorientationabsolute', event => {
+            if (event.alpha !== null) {
+                const compass = event.alpha;
+                compassRose.style.transform = `rotate(${-compass}deg)`;
+            }
+        }, true);
+
+        // Fallback for non-absolute orientation
+        window.addEventListener('deviceorientation', event => {
+            if (!event.absolute && event.alpha !== null) {
+                const compass = event.alpha;
+                compassRose.style.transform = `rotate(${-compass}deg)`;
+            }
+        }, true);
+    </script>
+</body>
+</html>

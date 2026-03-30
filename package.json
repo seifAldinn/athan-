@@ -1,0 +1,21 @@
+{
+  "name": "nur-prayer-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3000 --host=0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist",
+    "lint": "echo 'No linting needed for vanilla JS'"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "vite": "^6.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.1.14"
+  }
+}

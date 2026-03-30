@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Prayer - Home</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FDFCF8] text-[#1A1A1A] font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E5E5E5] px-6 py-4 z-50 md:top-0 md:bottom-auto md:border-t-0 md:border-b">
+        <div class="max-w-md mx-auto flex justify-between items-center md:max-w-4xl">
+            <a href="/" class="flex flex-col items-center gap-1 text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Home</span>
+            </a>
+            <a href="/tasbih.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="circle-dot" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Tasbih</span>
+            </a>
+            <a href="/qibla.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Qibla</span>
+            </a>
+            <a href="/duas.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Duas</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-md mx-auto px-6 pt-8 pb-24 md:max-w-4xl md:pt-24">
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="font-serif text-4xl font-light italic mb-2">As-Salamu Alaykum</h1>
+            <p id="current-date" class="text-[#8E9299] text-sm uppercase tracking-widest font-medium">Monday, 30 March</p>
+            <div id="location-display" class="flex items-center gap-2 mt-2 text-[#5A5A40]">
+                <i data-lucide="map-pin" class="w-4 h-4"></i>
+                <span class="text-xs font-semibold uppercase tracking-wider">Detecting Location...</span>
+            </div>
+        </header>
+
+        <!-- Next Prayer Card -->
+        <section class="bg-[#5A5A40] text-white rounded-[32px] p-8 mb-10 relative overflow-hidden shadow-2xl shadow-[#5A5A40]/20">
+            <div class="relative z-10">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-70 mb-2">Next Prayer</p>
+                <h2 id="next-prayer-name" class="font-serif text-5xl font-light mb-4 italic">Asr</h2>
+                <div class="flex items-baseline gap-2">
+                    <span id="next-prayer-time" class="text-3xl font-light">03:45</span>
+                    <span class="text-sm opacity-70 uppercase font-medium">PM</span>
+                </div>
+                <p id="time-remaining" class="mt-6 text-sm font-medium opacity-80">Remaining: 2h 15m</p>
+            </div>
+            <!-- Decorative Element -->
+            <div class="absolute -right-10 -bottom-10 w-48 h-48 border border-white/10 rounded-full"></div>
+            <div class="absolute -right-5 -bottom-5 w-48 h-48 border border-white/5 rounded-full"></div>
+        </section>
+
+        <!-- Prayer Times Grid -->
+        <section class="mb-12">
+            <div class="flex justify-between items-end mb-6">
+                <h3 class="font-serif text-2xl italic">Prayer Times</h3>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-[#8E9299]">Today</span>
+            </div>
+            <div id="prayer-times-list" class="space-y-1">
+                <!-- Prayer rows will be injected here -->
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Fajr</span>
+                    <span class="font-light text-lg">04:52 AM</span>
+                </div>
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Sunrise</span>
+                    <span class="font-light text-lg">06:15 AM</span>
+                </div>
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Dhuhr</span>
+                    <span class="font-light text-lg">12:30 PM</span>
+                </div>
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Asr</span>
+                    <span class="font-light text-lg">03:45 PM</span>
+                </div>
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Maghrib</span>
+                    <span class="font-light text-lg">06:45 PM</span>
+                </div>
+                <div class="flex justify-between items-center p-5 rounded-2xl border-b border-[#E5E5E5] hover:bg-white transition-colors">
+                    <span class="font-medium text-[#8E9299] uppercase tracking-wider text-xs">Isha</span>
+                    <span class="font-light text-lg">08:15 PM</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="grid grid-cols-2 gap-4">
+            <a href="/tasbih.html" class="bg-white p-6 rounded-[24px] border border-[#E5E5E5] hover:border-[#5A5A40] transition-all group">
+                <div class="w-10 h-10 rounded-full bg-[#F5F5F0] flex items-center justify-center mb-4 group-hover:bg-[#5A5A40] group-hover:text-white transition-colors">
+                    <i data-lucide="circle-dot" class="w-5 h-5"></i>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-[#8E9299] mb-1">Dhikr</p>
+                <h4 class="font-serif text-lg italic">Tasbih Counter</h4>
+            </a>
+            <a href="/duas.html" class="bg-white p-6 rounded-[24px] border border-[#E5E5E5] hover:border-[#5A5A40] transition-all group">
+                <div class="w-10 h-10 rounded-full bg-[#F5F5F0] flex items-center justify-center mb-4 group-hover:bg-[#5A5A40] group-hover:text-white transition-colors">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-[#8E9299] mb-1">Guidance</p>
+                <h4 class="font-serif text-lg italic">Daily Duas</h4>
+            </a>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="/src/script.js"></script>
+</body>
+</html>

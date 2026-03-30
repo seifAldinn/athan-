@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Prayer - Duas</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FDFCF8] text-[#1A1A1A] font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E5E5E5] px-6 py-4 z-50 md:top-0 md:bottom-auto md:border-t-0 md:border-b">
+        <div class="max-w-md mx-auto flex justify-between items-center md:max-w-4xl">
+            <a href="/" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Home</span>
+            </a>
+            <a href="/tasbih.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="circle-dot" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Tasbih</span>
+            </a>
+            <a href="/qibla.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Qibla</span>
+            </a>
+            <a href="/duas.html" class="flex flex-col items-center gap-1 text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Duas</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-md mx-auto px-6 pt-8 pb-24 md:max-w-4xl md:pt-24">
+        <header class="mb-10">
+            <h1 class="font-serif text-4xl font-light italic mb-2">Daily Duas</h1>
+            <p class="text-[#8E9299] text-xs font-bold uppercase tracking-widest">Supplications for every moment</p>
+        </header>
+
+        <!-- Categories -->
+        <div class="flex gap-3 overflow-x-auto pb-6 no-scrollbar">
+            <button class="px-6 py-2 rounded-full bg-[#5A5A40] text-white text-xs font-bold uppercase tracking-widest whitespace-nowrap">All</button>
+            <button class="px-6 py-2 rounded-full bg-white border border-[#E5E5E5] text-[#8E9299] text-xs font-bold uppercase tracking-widest whitespace-nowrap">Morning</button>
+            <button class="px-6 py-2 rounded-full bg-white border border-[#E5E5E5] text-[#8E9299] text-xs font-bold uppercase tracking-widest whitespace-nowrap">Evening</button>
+            <button class="px-6 py-2 rounded-full bg-white border border-[#E5E5E5] text-[#8E9299] text-xs font-bold uppercase tracking-widest whitespace-nowrap">Travel</button>
+        </div>
+
+        <!-- Dua List -->
+        <div class="space-y-6">
+            <div class="bg-white p-8 rounded-[32px] border border-[#E5E5E5]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#5A5A40] bg-[#F5F5F0] px-3 py-1 rounded-full">Morning</span>
+                    <button class="text-[#8E9299]"><i data-lucide="share-2" class="w-4 h-4"></i></button>
+                </div>
+                <h3 class="font-serif text-xl italic mb-4">Waking Up</h3>
+                <p class="text-right text-2xl font-serif leading-loose mb-6 text-[#1A1A1A]" dir="rtl">
+                    الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ
+                </p>
+                <p class="text-sm text-[#8E9299] italic mb-4">
+                    "All praise is for Allah who gave us life after having taken it from us and unto Him is the resurrection."
+                </p>
+                <div class="pt-6 border-t border-[#F5F5F0] flex justify-between items-center">
+                    <span class="text-[10px] font-medium text-[#8E9299] uppercase tracking-widest">Al-Bukhari</span>
+                    <button class="text-[#5A5A40] text-xs font-bold uppercase tracking-widest">Listen</button>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[32px] border border-[#E5E5E5]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#5A5A40] bg-[#F5F5F0] px-3 py-1 rounded-full">Protection</span>
+                    <button class="text-[#8E9299]"><i data-lucide="share-2" class="w-4 h-4"></i></button>
+                </div>
+                <h3 class="font-serif text-xl italic mb-4">Before Sleeping</h3>
+                <p class="text-right text-2xl font-serif leading-loose mb-6 text-[#1A1A1A]" dir="rtl">
+                    بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا
+                </p>
+                <p class="text-sm text-[#8E9299] italic mb-4">
+                    "In Your name, O Allah, I die and I live."
+                </p>
+                <div class="pt-6 border-t border-[#F5F5F0] flex justify-between items-center">
+                    <span class="text-[10px] font-medium text-[#8E9299] uppercase tracking-widest">Muslim</span>
+                    <button class="text-[#5A5A40] text-xs font-bold uppercase tracking-widest">Listen</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

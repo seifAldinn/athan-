@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-primary: #5A5A40;
+  --color-paper: #FDFCF8;
+  --color-ink: #1A1A1A;
+  --color-muted: #8E9299;
+  --color-line: #E5E5E5;
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

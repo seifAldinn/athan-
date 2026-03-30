@@ -1,0 +1,7 @@
+{
+  "name": "Nur Prayer App",
+  "description": "A comprehensive prayer companion app featuring prayer times, Qibla direction, Tasbih counter, and daily duas.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

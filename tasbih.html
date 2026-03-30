@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nur Prayer - Tasbih</title>
+    <link rel="stylesheet" href="/src/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FDFCF8] text-[#1A1A1A] font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E5E5E5] px-6 py-4 z-50 md:top-0 md:bottom-auto md:border-t-0 md:border-b">
+        <div class="max-w-md mx-auto flex justify-between items-center md:max-w-4xl">
+            <a href="/" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Home</span>
+            </a>
+            <a href="/tasbih.html" class="flex flex-col items-center gap-1 text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="circle-dot" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Tasbih</span>
+            </a>
+            <a href="/qibla.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="compass" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Qibla</span>
+            </a>
+            <a href="/duas.html" class="flex flex-col items-center gap-1 text-[#8E9299] hover:text-[#5A5A40] md:flex-row md:gap-2">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span class="text-[10px] font-medium uppercase tracking-wider md:text-sm">Duas</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-md mx-auto px-6 pt-8 pb-24 flex flex-col items-center justify-center min-h-[80vh] md:max-w-4xl md:pt-24">
+        <header class="text-center mb-12">
+            <h1 class="font-serif text-4xl font-light italic mb-2">Tasbih Counter</h1>
+            <p class="text-[#8E9299] text-xs font-bold uppercase tracking-widest">Glorify your Creator</p>
+        </header>
+
+        <div class="relative w-72 h-72 flex items-center justify-center mb-12">
+            <!-- Progress Ring -->
+            <svg class="absolute inset-0 w-full h-full -rotate-90">
+                <circle cx="144" cy="144" r="130" stroke="#E5E5E5" stroke-width="8" fill="transparent" />
+                <circle id="progress-circle" cx="144" cy="144" r="130" stroke="#5A5A40" stroke-width="8" fill="transparent" stroke-dasharray="816.8" stroke-dashoffset="816.8" stroke-linecap="round" class="transition-all duration-300" />
+            </svg>
+            
+            <div class="text-center z-10">
+                <span id="counter-value" class="text-7xl font-light text-[#1A1A1A]">0</span>
+                <p id="target-label" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8E9299] mt-2">Target: 33</p>
+            </div>
+        </div>
+
+        <div class="flex gap-6 items-center">
+            <button id="reset-btn" class="w-14 h-14 rounded-full border border-[#E5E5E5] flex items-center justify-center text-[#8E9299] hover:bg-[#F5F5F0] transition-colors">
+                <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+            </button>
+            <button id="count-btn" class="w-24 h-24 rounded-full bg-[#5A5A40] text-white flex items-center justify-center shadow-xl shadow-[#5A5A40]/30 active:scale-95 transition-transform">
+                <i data-lucide="plus" class="w-10 h-10"></i>
+            </button>
+            <button id="settings-btn" class="w-14 h-14 rounded-full border border-[#E5E5E5] flex items-center justify-center text-[#8E9299] hover:bg-[#F5F5F0] transition-colors">
+                <i data-lucide="settings" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div class="mt-12 text-center">
+            <p id="dhikr-text" class="font-serif text-xl italic text-[#5A5A40]">SubhanAllah</p>
+            <p class="text-[10px] font-medium text-[#8E9299] mt-2 uppercase tracking-widest">Glory be to Allah</p>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Manual icon initialization
+        lucide.createIcons();
+
+        let count = 0;
+        let target = 33;
+        const counterValue = document.getElementById('counter-value');
+        const progressCircle = document.getElementById('progress-circle');
+        const countBtn = document.getElementById('count-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const dhikrText = document.getElementById('dhikr-text');
+        
+        const dhikrs = [
+            { ar: "SubhanAllah", en: "Glory be to Allah" },
+            { ar: "Alhamdulillah", en: "Praise be to Allah" },
+            { ar: "Allahu Akbar", en: "Allah is the Greatest" }
+        ];
+        let dhikrIndex = 0;
+
+        const circumference = 2 * Math.PI * 130;
+
+        function updateDisplay() {
+            counterValue.textContent = count;
+            const offset = circumference - (count / target) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+            
+            dhikrText.textContent = dhikrs[dhikrIndex].ar;
+            dhikrText.nextElementSibling.textContent = dhikrs[dhikrIndex].en;
+        }
+
+        countBtn.addEventListener('click', () => {
+            count++;
+            if (count > target) {
+                count = 1;
+                dhikrIndex = (dhikrIndex + 1) % dhikrs.length;
+                // Vibrate if supported
+                if (navigator.vibrate) navigator.vibrate(200);
+            } else if (count === target) {
+                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            }
+            updateDisplay();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            dhikrIndex = 0;
+            updateDisplay();
+        });
+
+        updateDisplay();
+    </script>
+</body>
+</html>
